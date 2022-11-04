@@ -5,7 +5,7 @@ LABEL maintainer="anton.zyablov@nokia.com"\
     org.label-schema.vendor="Anton Zyablov, Nokia"\
     org.label-schema.version="0.2"\
     org.label-schema.schema-version="1.0"\
-    org.label-schema.docker.cmd="docker run -p 1514:1514/udp -p 1514:1514/tcp --name rsyslogd -d rsyslog:latest" 
+    org.label-schema.docker.cmd="docker run -p 1514:1514/udp -p 1514:1514/tcp -e CERTSUBJ='/=IT/ST=Lombardy/L=Vimercate/O=Nokia/OU=NI/CN=bootstrap/emailAddress=anton.zyablov@nokia.com' --name rsyslogd -d rsyslog:latest" 
 # Default subject for development and testpurposes, could replaced with specific one in case self signed cert customisation is needed.
 # Normally /cert supposed to be mounted and contain myCert.pem and myKey.key files to enable TLS
 ENV CERTSUBJ="/C=IT/ST=Lombardy/L=Monza/O=Nokia/OU=NI/CN=bootstrap/emailAddress=anton.zyablov@nokia.com"
