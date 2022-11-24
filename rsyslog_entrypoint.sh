@@ -14,6 +14,6 @@ if [ ! -f "$KEYFILE" ] | [ ! -f "$CERTFILE" ] ; then
     -batch \
     -nodes \
     -subj $CERTSUBJ
-    copy -p $CERTFILE $CAFILE
+    cp -p $CERTFILE $CAFILE
     /sbin/rsyslogd -n
 fi
