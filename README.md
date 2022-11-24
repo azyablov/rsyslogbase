@@ -1,12 +1,40 @@
 # Intro
 rsyslog base image for lab and ad-hoc use absed on rockylinux 8.6
 
-# Standard config
+# Standard rsyslog config
+Standard config consists out of TCP and UDP listeners. TCP listener assumes connectivity done via TLS and present self-signed certificate by default.
+```ruby
+# Default TCP config
+Input (type="imtcp" port="1514" ruleset="TCPDEFAULT")
 
+Ruleset (name="TCPDEFAULT") {
+    Action (type="omfile" file="/log/tcpdefault.log")
+}
+```
+```ruby
+# Default UDP config
+Input (type="imudp" port="1514" ruleset="UDPDEFAULT")
+
+Ruleset (name="UDPDEFAULT") {
+    Action (type="omfile" file="/log/udpdefault.log")
+}
+```
+    In case you would like to use own certificate trust chain, files under ```/log/cert``` should be replaced with new one by mofollowing naming convetion specifies below, otherwise default configuration file must be adjusted as well. Asusming log files under mount point ```/log```. 
+```ruby
+global(
+    DefaultNetstreamDriver="gtls"
+    DefaultNetstreamDriverCAFile="/log/cert/myCA.pem"
+    DefaultNetstreamDriverCertFile="/log/cert/myCert.pem"
+    DefaultNetstreamDriverKeyFile="/log/cert/myKey.key"
+)
+```
+All custom configurations can be mounted under ```/etc/rsyslog.d/``` as usual for rsyslogd.
 
 # Building and running
 
 ## k8s
+
+```<TBD>```
 
 ## docker 
 

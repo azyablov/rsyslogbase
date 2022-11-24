@@ -1,6 +1,7 @@
 #!/bin/bash
 KEYFILE=/log/cert/myKey.key
 CERTFILE=/log/cert/myCert.pem
+CAFILE=/log/cert/myCA.pem
 if [ ! -f "$KEYFILE" ] | [ ! -f "$CERTFILE" ] ; then
     echo "Generating self-signed certificate since no cert and/or key are provided."
     echo "Certificate subject: "$CERTSUBJ
@@ -13,5 +14,6 @@ if [ ! -f "$KEYFILE" ] | [ ! -f "$CERTFILE" ] ; then
     -batch \
     -nodes \
     -subj $CERTSUBJ
+    copy -p $CERTFILE $CAFILE
     /sbin/rsyslogd -n
 fi

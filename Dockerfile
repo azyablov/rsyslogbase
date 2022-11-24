@@ -5,10 +5,10 @@ LABEL maintainer="anton.zyablov@nokia.com"\
     org.label-schema.vendor="Anton Zyablov, Nokia"\
     org.label-schema.version="0.2"\
     org.label-schema.schema-version="1.0"\
-    org.label-schema.docker.cmd="docker run -p 1514:1514/udp -p 1514:1514/tcp -e CERTSUBJ='/C=IT/ST=Lombardy/L=Vimercate/O=Nokia/OU=NI/CN=bootstrap/emailAddress=anton.zyablov@nokia.com' --name rsyslogd -d rsyslog:latest" 
+    org.label-schema.docker.cmd="docker run -p 1514:1514/udp -p 1514:1514/tcp -e CERTSUBJ='/C=IT/ST=Lombardy/L=Vimercate/O=Nokia/OU=NI/CN=logcollector/emailAddress=anton.zyablov@nokia.com' --name rsyslogd -d rsyslog:latest" 
 # Default subject for development and testpurposes, could replaced with specific one in case self signed cert customisation is needed.
 # Normally /cert supposed to be mounted and contain myCert.pem and myKey.key files to enable TLS
-ENV CERTSUBJ="/C=IT/ST=Lombardy/L=Monza/O=Nokia/OU=NI/CN=bootstrap/emailAddress=anton.zyablov@nokia.com"
+ENV CERTSUBJ="/C=IT/ST=Lombardy/L=Monza/O=Nokia/OU=NI/CN=logcollector/emailAddress=anton.zyablov@nokia.com"
 RUN yum install rsyslog openssl rsyslog-gnutls -y
 RUN mkdir -p /log/cert
 COPY rsyslog.conf /etc/rsyslog.conf
