@@ -13,7 +13,7 @@ volumes:
   log:
     driver: local
 
-# networks:
-#   default:
-#     name: clab
-#     external: true
+networks:
+  default:
+    name: log
+    external: true

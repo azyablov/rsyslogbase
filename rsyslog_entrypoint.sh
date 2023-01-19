@@ -15,5 +15,5 @@ if [ ! -f "$KEYFILE" ] | [ ! -f "$CERTFILE" ] ; then
     -nodes \
     -subj $CERTSUBJ
     cp -p $CERTFILE $CAFILE
-    /sbin/rsyslogd -n
 fi
+/sbin/rsyslogd -n
